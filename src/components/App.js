@@ -1,10 +1,11 @@
 import React from "react";
-import "./App.css";
-const firebase = require("firebase");
+
+import firebase from "./Firebase";
+import Editor from "./Editor";
+import SideBars from "./SideBar";
 
 class App extends React.Component {
   constructor() {
-    console.log("constructor");
     super();
     this.state = {
       selectedNoteIndex: null,
@@ -13,7 +14,7 @@ class App extends React.Component {
     };
   }
   componentDidMount() {
-    console.log("componentDidMount");
+
     firebase
       .firestore()
       .collection("notes")
@@ -28,9 +29,12 @@ class App extends React.Component {
       });
   }
   render() {
-    console.log("render");
-    return "Here we go";
+    return (<div>
+      <Editor />
+      <SideBars />
+    </div>);
   }
+
 }
 
 export default App;
