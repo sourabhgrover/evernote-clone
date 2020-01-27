@@ -1,8 +1,9 @@
 import React from "react";
 
 import firebase from "./Firebase";
-import Editor from "./Editor";
-import SideBars from "./SideBar";
+import EditorComponent from "./Editor";
+import SideBarComponent from "./SideBar";
+import "./App.css";
 
 class App extends React.Component {
   constructor() {
@@ -29,10 +30,11 @@ class App extends React.Component {
       });
   }
   render() {
-    return (<div>
-      <Editor />
-      <SideBars />
-    </div>);
+    return (
+      <div className="app-container">
+        <SideBarComponent selectedNoteIndex={this.state.selectedNoteIndex} notes={this.state.notes} />
+        <EditorComponent />
+      </div>);
   }
 
 }
