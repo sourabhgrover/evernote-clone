@@ -27,7 +27,9 @@ class SideBar extends React.Component {
                         <div>
                             <input
                                 className={classes.newNoteInput}
-                                type="text" placeholder="Enter Title" onKeyUp={(e) => this.updateTitle(e.target.value)}></input>
+                                type="text" placeholder="Enter Note Title" onKeyUp={(e) => this.updateTitle(e.target.value)}>
+                            </input>
+                            <Button className={classes.newNoteSubmitButton} onClick={this.submitNote}>Submit</Button>
                         </div>
                         : null
 
@@ -40,7 +42,11 @@ class SideBar extends React.Component {
         this.setState({ addingNote: !this.state.addingNote, title: null });
     }
     updateTitle = (title) => {
-        console.log(title);
+        this.setState({ title })
+    }
+    submitNote = () => {
+        console.log(this.state);
+        console.log("submit clikced");
     }
 }
 
