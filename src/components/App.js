@@ -37,7 +37,16 @@ class App extends React.Component {
           notes={this.state.notes}
           selectNote={this.selectNote}
         />
-        <EditorComponent />
+        {
+          // If any note is selected than render Editor Component
+          this.state.selectedNote ?
+            <EditorComponent
+              selectedNoteIndex={this.state.selectedNoteIndex}
+              notes={this.state.notes}
+              selectedNote={this.state.selectedNote}
+            /> : null
+        }
+
       </div>);
   }
 
