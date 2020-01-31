@@ -51,7 +51,10 @@ class Editor extends React.Component {
   }
 
   updateDB = debounce(() => {
-    console.log("Updating Database");
+    this.props.updateNote(this.state.id, {
+      title: this.state.title,
+      body: this.state.text
+    })
   }, 2000);
 }
 
