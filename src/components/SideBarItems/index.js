@@ -9,6 +9,7 @@ import { removeHTMLTags } from '../../helpers';
 
 class SideBarItems extends React.Component {
 
+
     render() {
         const { _index, _note, classes, selectedNoteIndex } = this.props;
         return (
@@ -39,7 +40,7 @@ class SideBarItems extends React.Component {
     }
 
     selectNote = (note, index) => {
-        this.props.selectNote();
+        this.props.selectNote(note, index);
     }
     deleteNote = (note) => {
         if (window.confirm(`Are you sure you want to delete ${note.title}`))

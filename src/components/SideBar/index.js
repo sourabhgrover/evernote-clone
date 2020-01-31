@@ -74,7 +74,8 @@ class SideBar extends React.Component {
         console.log("submit clikced");
     }
     deleteNote = () => console.log("Delete Note");
-    selectNote = () => console.log("selectNote");
+
+    selectNote = (n, i) => this.props.selectNote(n, i);
 }
 
 export default withStyles(style)(SideBar);
