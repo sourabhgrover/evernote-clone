@@ -30,7 +30,7 @@ class SideBar extends React.Component {
                                     className={classes.newNoteInput}
                                     type="text" placeholder="Enter Note Title" onKeyUp={(e) => this.updateTitle(e.target.value)}>
                                 </input>
-                                <Button className={classes.newNoteSubmitButton} onClick={this.submitNote}>Submit</Button>
+                                <Button className={classes.newNoteSubmitBtn} onClick={this.submitNote}>Submit</Button>
                             </div>
                             : null
                     }
@@ -71,7 +71,7 @@ class SideBar extends React.Component {
         this.props.addNewNote(this.state.title);
         this.setState({ title: null, addingNote: false })
     }
-    
+
     deleteNote = note => this.props.deleteNote(note);
 
     selectNote = (n, i) => this.props.selectNote(n, i);
