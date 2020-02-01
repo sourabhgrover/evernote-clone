@@ -36,6 +36,7 @@ class App extends React.Component {
           notes={this.state.notes}
           selectNote={this.selectNote}
           addNewNote={this.addNewNote}
+          deleteNote={this.deleteNote}
         />
         {
           // If any note is selected than render Editor Component
@@ -83,9 +84,30 @@ class App extends React.Component {
     // Update Notes State
     await this.setState({ notes: [...this.state.notes, newNote] });
     // Update Selected Note and Set to Newly Created Note
-    const newNoteIndex = await this.state.notes.indexOf(this.state.notes.filter(_note => _note.id === newNoteFirebase.id))
-    await this.setState({ selectedNoteIndex: newNoteIndex, selectedNote: this.state.notes[newNoteIndex] });
-    console.log(this.state);
+    const newNoteIndex = this.state.notes.indexOf(this.state.notes.filter(_note => _note.id === newNoteFirebase.id)[0])
+    this.setState({ selectedNoteIndex: newNoteIndex, selectedNote: this.state.notes[newNoteIndex] });
+  }
+
+  // Delete Note
+  deleteNote = async note => {
+    const noteIndex = this.state.notes.indexOf(note);
+
+    await this.setState({ notes: this.state.notes.filter(_note => _note !== note) });
+
+    // If  deleting selected note
+    if (this.state.selectedNoteIndex === noteIndex) {
+      this.setState({ selectedNoteIndex: null, selectedNote: null })
+    } else {
+      this.state.notes.length > 1 ?
+        this.selectNote(this.state.notes[this.state.selectedNoteIndex - 1], this.state.selectedNoteIndex - 1) :
+        this.setState({ selectedNoteIndex: null, selectedNote: null });
+    }
+    // Delete Note from FIrebase
+    firebase
+      .firestore()
+      .collection('notes')
+      .doc(note.id)
+      .delete();
   }
 
 }

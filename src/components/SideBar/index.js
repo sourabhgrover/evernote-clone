@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import style from './style';
 import List from '@material-ui/core/List';
 import { Divider, Button } from '@material-ui/core';
-import SidebarItems from '../SideBarItems';
+import SideBarItems from '../SideBarItems';
 
 class SideBar extends React.Component {
     constructor() {
@@ -40,7 +40,7 @@ class SideBar extends React.Component {
                             notes.map(
                                 (_note, _index) => {
                                     return (<div key={_index}>
-                                        <SidebarItems
+                                        <SideBarItems
                                             _note={_note}
                                             _index={_index}
                                             selectedNoteIndex={selectedNoteIndex}
@@ -69,8 +69,10 @@ class SideBar extends React.Component {
     }
     submitNote = () => {
         this.props.addNewNote(this.state.title);
+        this.setState({ title: null, addingNote: false })
     }
-    deleteNote = () => console.log("Delete Note");
+    
+    deleteNote = note => this.props.deleteNote(note);
 
     selectNote = (n, i) => this.props.selectNote(n, i);
 }
