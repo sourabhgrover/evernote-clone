@@ -47,14 +47,13 @@ class SideBar extends React.Component {
                                             selectNote={this.selectNote}
                                             deleteNote={this.deleteNote}
                                         />
+                                        <Divider></Divider>
                                     </div>);
                                 }
                             )
                         }
                     </List>
-                    <Divider></Divider>
-
-                </div >
+                </div>
             );
         } else {
             return (<div>Loading...</div>);

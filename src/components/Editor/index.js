@@ -22,13 +22,13 @@ class Editor extends React.Component {
     this.setState({
       text: this.props.selectedNote.body,
       title: this.props.selectedNote.title,
-      id: this.props.selectedNote.id,
+      id: this.props.selectedNote.id
     })
   }
 
   componentDidUpdate() {
     // If Selected NOte CHanged by user update state
-    if (this.state.id != this.props.selectedNote.id) {
+    if (this.state.id !== this.props.selectedNote.id) {
       this.setState({
         text: this.props.selectedNote.body,
         title: this.props.selectedNote.title,
