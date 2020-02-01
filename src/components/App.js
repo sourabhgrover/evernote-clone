@@ -25,7 +25,6 @@ class App extends React.Component {
           data["id"] = singleDocument.id;
           return data;
         });
-        console.log(notes);
         this.setState({ notes: notes });
       });
   }
@@ -36,6 +35,7 @@ class App extends React.Component {
           selectedNoteIndex={this.state.selectedNoteIndex}
           notes={this.state.notes}
           selectNote={this.selectNote}
+          addNewNote={this.addNewNote}
         />
         {
           // If any note is selected than render Editor Component
@@ -67,6 +67,25 @@ class App extends React.Component {
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
       })
 
+  }
+
+  // Add new note in firebase
+  addNewNote = async (title) => {
+    const newNote = {
+      title,
+      body: ''
+    }
+    const newNoteFirebase = await firebase.firestore().collection('notes').add({
+      title: newNote.title,
+      body: newNote.body,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    // Update Notes State
+    await this.setState({ notes: [...this.state.notes, newNote] });
+    // Update Selected Note and Set to Newly Created Note
+    const newNoteIndex = await this.state.notes.indexOf(this.state.notes.filter(_note => _note.id === newNoteFirebase.id))
+    await this.setState({ selectedNoteIndex: newNoteIndex, selectedNote: this.state.notes[newNoteIndex] });
+    console.log(this.state);
   }
 
 }

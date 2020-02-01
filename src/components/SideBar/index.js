@@ -35,12 +35,10 @@ class SideBar extends React.Component {
                             : null
                     }
 
-
                     <List>
                         {
                             notes.map(
                                 (_note, _index) => {
-                                    console.log(_note);
                                     return (<div key={_index}>
                                         <SidebarItems
                                             _note={_note}
@@ -70,8 +68,7 @@ class SideBar extends React.Component {
         this.setState({ title })
     }
     submitNote = () => {
-        console.log(this.state);
-        console.log("submit clikced");
+        this.props.addNewNote(this.state.title);
     }
     deleteNote = () => console.log("Delete Note");
 
