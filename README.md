@@ -1,1 +1,2 @@
-Notes application similar to Evernote developed in React
+Developing Notes Management Application similar to Evernote
+Tech Stack : React , Firebase
