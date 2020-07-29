@@ -1,6 +1,6 @@
 import React from "react";
 
-import firebase from "./Firebase";
+import firebase,  {db} from "./Firebase";
 import EditorComponent from "./Editor";
 import SideBarComponent from "./SideBar";
 import "./App.css";
@@ -16,9 +16,17 @@ class App extends React.Component {
   }
   componentDidMount() {
 
-    firebase
-      .firestore()
-      .collection("notes")
+    console.log("Comes in component did mount");
+  //   const notes = db.collection("notes").get();
+  //   db.collection("notes").get().then((querySnapshot) => {
+  //     console.log({querySnapshot});
+  //     // querySnapshot.forEach((doc) => {
+  //     //     console.log(`${doc.id} => ${doc.data()}`);
+  //     // });
+  // });
+    // firebase
+    //   .firestore()
+      db.collection("notes")
       .onSnapshot(serverUpdate => {
         const notes = serverUpdate.docs.map(singleDocument => {
           const data = singleDocument.data();

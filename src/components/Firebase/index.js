@@ -1,4 +1,5 @@
-import firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/firestore";
 const config = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -8,6 +9,12 @@ const config = {
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
+
 firebase.initializeApp(config);
+
+window.firebase = firebase;
+
+export const db = firebase.firestore();
+// db.settings({timestampsInSnapshots: true})
 
 export default firebase;
