@@ -2,6 +2,8 @@ import React from "react";
 import {Container,Row,Col} from "react-bootstrap";
 import styled from "styled-components";
 
+import LeftNavBar from "./LeftNavBar";
+
 const StyledContainer = styled(Container)`
     background-color: palevioletred;
     border: 2px solid palevioletred;
@@ -21,7 +23,7 @@ const Wrapper = styled.div`
 const Home = () =>{
 return(
     <Wrapper>
-        <nav style={{border:"2px solid black"}} className="col-2">Nav bar thi is s</nav>
+        <LeftNavBar />
         <div style={{border:"2px solid red"}} className="col-2">Note Book List</div>
         <div style={{border:"2px solid yellow"}} className="col-8">Content</div>
     </Wrapper>
